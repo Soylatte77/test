@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 일반회원의 페이지 설정 -->
+	<definition name="baseLayout" template="/WEB-INF/views/template/base_template.jsp">
+		<put-attribute name="title" value="Shop"/>
+		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
+		<put-attribute name="body" value=""/>
+		<!-- 바디가 빈값 = 수시로 변경되기 때문에 처음부터 고정시켜 놓지 않음 -->
+	</definition>
+	
+	<!-- */* == 컨트롤러 주소가 들어오면 실행됨-->
+	<!--  extends="baseLayout" >> 베이스레이아웃을 확장하여 적용 -->
+	<definition name="*/*" extends="baseLayout">
+	<!-- baseLayout = 템플레이트 파일 -->
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+		<!-- /WEB-INF/views/{첫번째 *}/{두번째 *}.jsp -->	
+		<!-- item/item_list == /WEB-INF/views/item/item_list.jsp -->
+	</definition>
+	
+	<!-- 필요할때마다 definition 추가 가능 -->
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

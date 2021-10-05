@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,
+aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,
+nav,output,ruby,section,summary,time,mark,audio,video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,
+nav,section {
+  display: block;
+}
+body {
+  line-height: 1;
+  font-family: 'NEXON Lv2 Gothic';
+  font-size: 20px;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+input:focus {
+  outline: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.btn{
+   border :none;
+   display: inline-block;
+   width: 100px;
+   background-color: #8c7ae6;
+   color: white;
+   padding: 6px 0;
+   border-radius: 6px;
+   box-shadow: 3px 3px 7px #333333;
+   cursor: pointer;
+   outline:none;
+   -ms-user-select: none; 
+     -moz-user-select: -moz-none;
+     -khtml-user-select: none;
+     -webkit-user-select: none;
+     user-select: none;
+     font-size: 20px;
+     font-family: 'S-CoreDream-5Medium';
+}
+.btn:active{
+   outline:none;
+   position: relative;
+   left: 2px;
+   top: 2px;
+   background-color: #7b69d5;
+}
+.btnDiv{
+   text-align: center;
+   margin-top: 30px;
+}
+.input{
+   height: 22px;
+   border: 1.5px solid #9c88ff;
+   border-radius: 6px;
+}
+.input:focus {
+   outline: none;
+   border: 2px solid #8c7ae6;
+}
+select.input{
+   height: 27px;
+}   
