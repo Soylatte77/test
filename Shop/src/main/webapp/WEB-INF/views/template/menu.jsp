@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>test</title>
 <script type="text/javascript" src="/resources/template/js/menu.js?ver=4"></script>
 <style type="text/css">
 .row{
