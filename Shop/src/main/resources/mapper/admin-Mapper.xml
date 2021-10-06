@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="categoryMapper">
+	<resultMap type="com.spring.shop.admin.vo.AdminVO" id="admin">
+		<id column="CATE_CODE" property="cateCode"/>
+		<result column="CATE_NAME" property="cateName"/>
+	</resultMap>
+	
+	<insert id="insertCate">
+		INSERT INTO ITEM_CATEGORY(
+			         CATE_CODE
+			         , CATE_NAME
+			        
+       	  ) VALUES (
+			         #{cateCode}
+			         , #{cateName}      
+		            )	
+	</insert>
+	
+	<select id="selectAllCate" resultMap="admin">
+		SELECT CATE_CODE
+		     , CATE_NAME
+		FROM ITEM_CATEGORY
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
