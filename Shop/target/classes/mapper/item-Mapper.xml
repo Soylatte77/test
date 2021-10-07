@@ -15,6 +15,7 @@
 		<result column="CATE_CODE" property="cateCode"/>
 	</resultMap>
 	
+	<!-- 카테고리 리스트  -->
 	<select id="selectCateList" resultMap="category">
 		SELECT CATE_CODE
 			  ,CATE_NAME
@@ -22,6 +23,7 @@
 		ORDER BY CATE_CODE
 	</select>
 	
+	<!-- 아이템 추가 -->
 	<insert id="insertItem">
 		INSERT INTO BOOK_ITEM(
 					ITME_CODE

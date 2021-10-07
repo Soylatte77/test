@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,19 +38,21 @@
             <table class="table table-striped">
                  <thead>
                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">NO</th>
+                        <th scope="col">CODE</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">DELETE</th>
                    </tr>
                  </thead>
                  <tbody>
+                  <c:forEach items="${cateList }" var="cateList" varStatus="status">
                    <tr>
-                        <th scope="row">1</th>
-                        <td class="align-middle">Mark</td>
-                        <td class="align-middle">Otto</td>
+                        <th scope="row"></th>
+                        <td class="align-middle">${cateList.cateCode}</td>
+                        <td class="align-middle">${cateList.cateName }</td>
                         <td  class="align-middle"><input type="button" class="btn btn-primary btn-sm" value=" 삭 제 " ></td>
                    </tr>
+                   </c:forEach>
                  </tbody>
             </table>
          </div>

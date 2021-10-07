@@ -18,11 +18,7 @@
 		            )	
 	</insert>
 	
-	<select id="selectAllCate" resultMap="admin">
-		SELECT CATE_CODE
-		     , CATE_NAME
-		FROM ITEM_CATEGORY
-	</select>
+	
 </mapper>
 
 

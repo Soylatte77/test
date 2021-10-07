@@ -24,6 +24,8 @@ public class AdminController {
 		//선택한 사이드 메뉴를 지정하기 위한 데이터
 		model.addAttribute("sidePage", "categoryManage");
 		
+		model.addAttribute("cateList", itemService.selectCateList());
+		
 		return "admin/category_manage";
 	}
 	
@@ -47,7 +49,7 @@ public class AdminController {
 		
 		return "redirect:/admin/regItem";
 	}
-	
+	 
 	//상품 관리 페이지로 이동
 	@GetMapping("/itemManage")
 	public String goItemManage() {

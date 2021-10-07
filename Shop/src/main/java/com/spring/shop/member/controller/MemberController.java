@@ -59,5 +59,10 @@ public class MemberController {
 		//로그인 실패했을 때
 		return "redirect:/item/itemList";
 	}
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginInfo");
+		return "redirect:/item/itemList";
+	}
 	
 }
