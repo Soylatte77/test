@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test</title>
+<title>BOOK SHOP</title>
 <script type="text/javascript" src="/resources/template/js/menu.js?ver=4"></script>
 <style type="text/css">
 .row{
@@ -22,10 +22,10 @@ span:hover{
 			<c:choose>
 				<c:when test="${not empty sessionScope.loginInfo }">
 					${loginInfo.id } 님 반갑습니다.  
-					<a href="member/logout">LOGOUT</a>
+					<a href="/member/logout">LOGOUT</a>
 				</c:when>
 				<c:otherwise>
-					<a href="member/join">JOIN</a> 
+					<a href="/member/join">JOIN</a> 
 					<!-- 모달 버튼 실행하기 위한 속성 추가 -->
 					<span data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</span> 
 				</c:otherwise>
