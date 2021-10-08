@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.shop.member.service.MemberService;
 import com.spring.shop.member.vo.MemberVO;
@@ -24,6 +25,15 @@ public class MemberController {
 	@GetMapping("/join")
 	public String joinForm() {
 		return "member/join";
+	}
+	
+	//아이디 중복 확인
+	@ResponseBody
+	@PostMapping("/checkId")
+	public boolean checkId(String id) {
+		//기가입 ; true , 미가입 ; false
+		return memberService.isJoined(id);
+		
 	}
 	
 	//회원가입 하기
@@ -59,6 +69,7 @@ public class MemberController {
 		//로그인 실패했을 때
 		return "redirect:/item/itemList";
 	}
+	//로그 아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginInfo");

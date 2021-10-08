@@ -5,16 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?ver=4"></script>
+<style type="text/css">
+#confirmId{
+	color: red;
+	font-size: 15px;
+	font-style: italic;
+	margin-top: 10px;
+}
+</style>
+<script type="text/javascript" src="/resources/member/js/join.js?ver=13"></script>
 </head>
 <body>
 <div class="row justify-content-center">
    <div class="col-6">
       <form class="row g-3" action="/member/join" method="post" id="joinForm">
-         <div class="col-12">
+         <div class="col-9">
             <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" id="id" name="id" required>
-         </div>
+            <input type="text" class="form-control" id="id" name="id">
+          </div>
+          <div class="col-3 d-grid" id="checkIdDiv">
+            <label for="btn1" class="form-label">&nbsp;</label>
+            <button type="button" class="btn btn-primary" id="btn1" onclick="checkId();">중복 확인</button>
+           </div>
+          
+           
+           
          <div class="col-12">
             <label for="pw" class="form-label">PASSWORD</label>
             <input type="password" class="form-control" id="pw" name="pw" required>
@@ -48,8 +63,8 @@
              <input type="text" class="form-control" id="addr" name="addrs">
            </div>
            <div class="col-3 d-grid">
-            <label for="btn1" class="form-label">&nbsp;</label>
-             <button type="submit" class="btn btn-primary" id="btn1">검 색</button>
+            <label for="btn2" class="form-label">&nbsp;</label>
+             <button type="button" class="btn btn-primary" id="btn2">검 색</button>
            </div>
            <div class="col-12 mt-2">
              <input type="text" class="form-control" id="addr2" name="addrs">
@@ -69,7 +84,7 @@
             </div>
            </div>
            <div class="col-12 d-grid">
-             <input type="button" class="btn btn-primary" value="J o i n" onclick="goJoin();">
+             <input type="button" id="joinBtn" class="btn btn-primary disabled" value="J o i n" onclick="goJoin();" >
            </div>
       </form>
    </div>

@@ -42,7 +42,6 @@ body {
 		<tiles:insertAttribute name="body"/>
 		</div>
 	</div>
-
 </div>
 </body>
 </html>

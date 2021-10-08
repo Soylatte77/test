@@ -19,17 +19,19 @@
       <div class="row">
          <div class="col-10">
             <div style="font-size: 12px; color: red; margin-bottom: 5px;">*추가할 상품 카테고리명을 입력하세요.</div>
-            <div class="row">
+            	<form action="/admin/insertCate" method="post">
+	            <div class="row">
                      <div class="col-8">
                         <div class="input-group mb-3">
-                          <span class="input-group-text" id="basic-addon1">ITEM_NAME</span>
-                          <input type="text" class="form-control" placeholder="Input here..." aria-label="Username" aria-describedby="basic-addon1">
+                          <span class="input-group-text" id="basic-addon1">CATE_NAME</span>
+                          <input type="text" class="form-control" name="cateName" required placeholder="Input here..." aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                      </div>
                      <div class="col-4">
-                      <input type="button" class="btn btn-primary" value=" 추 가 " >
+                      <input type="submit" class="btn btn-primary" value=" 추 가 " >
                      </div>
-               </div>
+    	          </div>
+                </form>
          </div>
       </div>
       <div style="height: 30px;"></div>
@@ -38,19 +40,24 @@
             <table class="table table-striped">
                  <thead>
                    <tr>
-                        <th scope="col">NO</th>
-                        <th scope="col">CODE</th>
-                        <th scope="col">NAME</th>
+                        <th scope="col">NO.</th>
+                        <th scope="col">CATE CODE</th>
+                        <th scope="col">CATE NAME</th>
                         <th scope="col">DELETE</th>
                    </tr>
                  </thead>
                  <tbody>
-                  <c:forEach items="${cateList }" var="cateList" varStatus="status">
+                  <c:forEach items="${cateList}" var="cateInfo" varStatus="status">
                    <tr>
-                        <th scope="row"></th>
-                        <td class="align-middle">${cateList.cateCode}</td>
-                        <td class="align-middle">${cateList.cateName }</td>
-                        <td  class="align-middle"><input type="button" class="btn btn-primary btn-sm" value=" 삭 제 " ></td>
+                        <th scope="row">${cateList.size() - status.index}</th>
+                        <td class="align-middle">${cateInfo.cateCode}</td>
+                        <td class="align-middle">${cateInfo.cateName}</td>
+                        <td  class="align-middle">
+                        	<form action="/admin/deleteCate" method="post">
+                        	<input type="hidden" name="cateCode" value="${cateInfo.cateCode}">
+                        	<input type="submit" class="btn btn-primary btn-sm" value=" 삭 제 " >
+                       		</form>
+                        </td>
                    </tr>
                    </c:forEach>
                  </tbody>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.shop.common.service.CommonService;
 import com.spring.shop.item.service.ItemService;
 import com.spring.shop.item.vo.ItemVO;
 
@@ -17,10 +18,16 @@ public class AdminController {
 	
 	@Resource(name = "itemService")
 	private ItemService itemService;
+	@Resource(name = "commonService")
+	private CommonService commonService;
 	
 	//카테고리 관리 페이지로 이동
 	@GetMapping("/categoryManage")
 	public String goCategoryManage(Model model) {
+		
+		//관리자 상단 메뉴 조회 쿼리
+		model.addAttribute("menuList", commonService.selectMenuList());
+		
 		//선택한 사이드 메뉴를 지정하기 위한 데이터
 		model.addAttribute("sidePage", "categoryManage");
 		
@@ -32,6 +39,8 @@ public class AdminController {
 	//상품 등록 페이지로 이동
 	@GetMapping("/regItem")
 	public String goRegItem(Model model) {
+		//관리자 상단 메뉴 조회 쿼리
+		model.addAttribute("menuList", commonService.selectMenuList());
 		
 		//선택한 사이드 메뉴를 지정하기 위한 데이터
 		model.addAttribute("sidePage", "regItem");
@@ -52,7 +61,36 @@ public class AdminController {
 	 
 	//상품 관리 페이지로 이동
 	@GetMapping("/itemManage")
-	public String goItemManage() {
+	public String goItemManage(Model model) {
+		//관리자 상단 메뉴 조회 쿼리
+		model.addAttribute("menuList", commonService.selectMenuList());
+		
 		return "admin/item_manage";
+	}
+	
+	//카테고리 등록
+	@PostMapping("/insertCate")
+	public String insertCate(String cateName) {
+		
+		itemService.insertCate(cateName);
+		
+		return "redirect:/admin/categoryManage";
+	}
+	//카테고리 삭제
+	@PostMapping("/deleteCate")
+	public String deleteCate(String cateCode) {
+		itemService.deleteCate(cateCode);
+		
+		
+		return "redirect:/admin/categoryManage";
+	}
+	//회원관리 이동
+	@GetMapping("/memberManage")
+	public String memberList(Model model) {
+		//관리자 상단 메뉴 조회 쿼리
+		model.addAttribute("menuList", commonService.selectMenuList());
+		model.addAttribute("sidePage", "memberList");
+		
+		return "admin/member_list";
 	}
 }

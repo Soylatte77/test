@@ -6,13 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>BOOK SHOP</title>
-<script type="text/javascript" src="/resources/template/js/menu.js?ver=4"></script>
+<link rel="stylesheet" href="${path}/resources/common/reset.css?ver=1"> 
+<script type="text/javascript" src="/resources/template/js/menu.js?ver=5"></script>
 <style type="text/css">
 .row{
 	padding-top: 20px;
-}
-span:hover{
-	cursor: pointer;
 }
 </style>
 </head>
@@ -27,7 +25,7 @@ span:hover{
 				<c:otherwise>
 					<a href="/member/join">JOIN</a> 
 					<!-- 모달 버튼 실행하기 위한 속성 추가 -->
-					<span data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</span> 
+					<a data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</a> 
 				</c:otherwise>
 			</c:choose>			
 		</div>
@@ -54,14 +52,14 @@ span:hover{
 							<c:choose>
 								<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
 									<a class="nav-link active" aria-current="page" href="#">HOME</a>
-									<a class="nav-link active" href="#">IT / 컴퓨터</a> 
-									<a class="nav-link active" href="#">소설 / 에세이</a> 
-									<a class="nav-link active">자기계발</a>
+									<c:forEach items="${cateList }" var="cateInfo">
+									<a class="nav-link active" href="#">${cateInfo.cateName }</a> 
+									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<a class="nav-link active" href="#">상품 관리</a> 
-									<a class="nav-link active" href="#">회원 관리</a> 
-									<a class="nav-link active">매출 관리</a>
+									<c:forEach items="${menuList }" var="menuInfo">
+									<a class="nav-link active" href="/admin/${menuInfo.menuUri }">${menuInfo.menuName }</a> 
+									</c:forEach>
 								</c:otherwise>
 							</c:choose>
 							
@@ -94,7 +92,7 @@ span:hover{
 			  <label for="pwInput">Your PW</label>
 			</div>
 	      </div>
-	      <div class="col-12 d-grid mt-2 mb-2 mr-2 ml-2">
+	      <div class="col-12 d-grid">
              <input type="submit" class="btn btn-primary" value="L O G I N" >
           </div>
 			</form>

@@ -13,6 +13,15 @@
 		<result column="JOIN_DATE" property="joinDate"/>
 	</resultMap>
 	
+	<!-- 아이디 중복 검사 -->
+	<!-- resultType = 셀렉트 후 도출되는 결과 = id = String -->
+	<select id="isJoined" resultType="String">
+		SELECT ID
+		FROM BOOK_MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 회원가입 -->
 	<insert id="insertMember">
 		INSERT INTO BOOK_MEMBER (
 			         ID
@@ -31,6 +40,7 @@
       )	
 	</insert>
 	
+	<!-- 로그인 -->
 	<select id="selectMember" resultMap="member">
 		SELECT ID
 		     , NAME

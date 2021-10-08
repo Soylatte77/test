@@ -11,4 +11,11 @@ public interface ItemService {
 
 	//상품 등록
 	void insertItem(ItemVO itemVO);
+	
+	//카테고리 등록
+	void insertCate(String cateName);
+	
+	//카테고리 삭제
+	void deleteCate(String cateCode);
+
 }
