@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="commonMapper">
+	<resultMap type="com.spring.shop.common.vo.MenuVO" id="menu">
+		<id column="MENU_CODE" property="menuCode"/>
+		<result column="MENU_NAME" property="menuName"/>
+		<result column="MENU_URI" property="menuUri"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.shop.common.vo.SideMenuVO" id="sideMenu">
+		<id column="SIDE_MENU_CODE" property="SideMenuCode"/>
+		<result column="SIDE_MENU_NAME" property="SideMenuName"/>
+		<result column="SIDE_MENU_URI" property="SideMenuUri"/>
+	</resultMap>
+	
+	<select id="selectMenuList" resultMap="menu">
+		SELECT MENU_CODE
+      		  ,MENU_NAME
+      		  ,MENU_URI
+		FROM MENU
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
