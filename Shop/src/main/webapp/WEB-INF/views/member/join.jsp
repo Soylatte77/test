@@ -16,6 +16,7 @@
 <script type="text/javascript" src="/resources/member/js/join.js?ver=13"></script>
 </head>
 <body>
+	aaaaa
 <div class="row justify-content-center">
    <div class="col-6">
       <form class="row g-3" action="/member/join" method="post" id="joinForm">
