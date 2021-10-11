@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.btn{
+	background-color: #4b7bec;
+}
+</style>
 </head>
 <body>
 <div class="row">

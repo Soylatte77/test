@@ -92,8 +92,8 @@
 			  <label for="pwInput">Your PW</label>
 			</div>
 	      </div>
-	      <div class="col-12 d-grid">
-             <input type="submit" class="btn btn-primary" value="L O G I N" >
+	      <div class="col-12 d-grid p-1">
+             <input type="submit" class="btn btn-primary btn-block" value="L O G I N"  style="background-color: #4b7bec;">
           </div>
 			</form>
 	    </div>
