@@ -3,7 +3,9 @@ package com.spring.shop.common.vo;
 public class SideMenuVO {
 	private String sideMenuCode;
 	private String sideMenuName;
-	private String sideMenuUri;
+	private String sideMenuPass;
+	private String menuCode;
+	private String menuPass;
 	
 	public String getSideMenuCode() {
 		return sideMenuCode;
@@ -17,12 +19,25 @@ public class SideMenuVO {
 	public void setSideMenuName(String sideMenuName) {
 		this.sideMenuName = sideMenuName;
 	}
-	public String getSideMenuUri() {
-		return sideMenuUri;
+	public String getSideMenuPass() {
+		return sideMenuPass;
 	}
-	public void setSideMenuUri(String sideMenuUri) {
-		this.sideMenuUri = sideMenuUri;
+	public void setSideMenuPass(String sideMenuPass) {
+		this.sideMenuPass = sideMenuPass;
 	}
+	public String getMenuCode() {
+		return menuCode;
+	}
+	public void setMenuCode(String menuCode) {
+		this.menuCode = menuCode;
+	}
+	public String getMenuPass() {
+		return menuPass;
+	}
+	public void setMenuPass(String menuPass) {
+		this.menuPass = menuPass;
+	}
+	
 	
 	
 }

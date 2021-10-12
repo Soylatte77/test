@@ -25,12 +25,16 @@ public class AdminController {
 	@GetMapping("/categoryManage")
 	public String goCategoryManage(Model model) {
 
-		// 관리자 상단 메뉴 조회 쿼리
-		model.addAttribute("menuList", commonService.selectMenuList());
-
 		// 선택한 사이드 메뉴를 지정하기 위한 데이터
 		model.addAttribute("sidePage", "categoryManage");
 
+		// 관리자 상단 메뉴 조회 쿼리
+		model.addAttribute("menuList", commonService.selectMenuList());
+
+		//사이드 메뉴 조회 쿼리
+		model.addAttribute("sideMenuList", commonService.selectSideMenuList("MENU_001"));
+		
+		//카테고리 목록 조회
 		model.addAttribute("cateList", itemService.selectCateList());
 
 		return "admin/category_manage";
@@ -65,6 +69,9 @@ public class AdminController {
 		// 카테고리 목록 조회를 위해 카테고리 리스트 조회 쿼리 실행
 		model.addAttribute("list", itemService.selectCateList());
 
+		//사이드 메뉴 조회 쿼리
+		model.addAttribute("sideMenuList", commonService.selectSideMenuList("MENU_001"));
+	
 		return "admin/reg_item";
 	}
 
@@ -86,22 +93,28 @@ public class AdminController {
 		return "admin/item_manage";
 	}
 
+	//회원목록으로 이동
+	@GetMapping("/memberList")
+	public String memberList(Model model) {
+		// 선택한 사이드 메뉴를 지정하기 위한 데이터
+		model.addAttribute("sidePage", "memberList");
+		
+		// 관리자 상단 메뉴 조회 쿼리
+		model.addAttribute("menuList", commonService.selectMenuList());
+
+		//사이드 메뉴 조회 쿼리
+		model.addAttribute("sideMenuList", commonService.selectSideMenuList("MENU_002"));
+		return "admin/member_list";
+	}
 	// 회원관리 이동
 	@GetMapping("/memberManage")
 	public String memberManage(Model model) {
 		// 관리자 상단 메뉴 조회 쿼리
 		model.addAttribute("menuList", commonService.selectMenuList());
-		model.addAttribute("sidePage", "memberManage");
 
-		return "admin/member_manage";
-	}
-	//회원 목록으로 이동
-	@GetMapping("/memberList")
-	public String memberList(Model model) {
-		// 관리자 상단 메뉴 조회 쿼리
-		model.addAttribute("menuList", commonService.selectMenuList());
-		model.addAttribute("sidePage", "memberList");
+		//사이드 메뉴 조회 쿼리
+		model.addAttribute("sideMenuList", commonService.selectSideMenuList("MENU_002"));
 		
-		return "admin/member_list";
+		return "admin/member_manage";
 	}
 }

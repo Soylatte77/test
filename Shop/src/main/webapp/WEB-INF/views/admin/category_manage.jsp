@@ -14,8 +14,8 @@
 </head>
 <body>
 <div class="row">
-   <div class="col-12">
-      <div class="row" style="margin-top: 10px;">
+   <div class="col-10">
+      <div class="row">
          <div class="col-5" style="border-bottom: 2px solid #dddddd;">
             <h5>ITEM CATEGORY MANAGE</h5>
          </div>
