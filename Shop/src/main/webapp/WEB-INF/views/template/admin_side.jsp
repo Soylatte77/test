@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .list-group-item{
-	border: 2px solid #4b7bec;
+	border: 0.5px solid #4b7bec;
 }
 .list-group-item.active {
 	background-color: #4b7bec;

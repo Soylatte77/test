@@ -12,6 +12,10 @@
 .row{
 	padding-top: 20px;
 }
+.btn{
+	background-color: #4b7bec;
+	border: 0.5px solid #4b7bec;
+}
 </style>
 </head>
 <body>
@@ -93,7 +97,7 @@
 			</div>
 	      </div>
 	      <div class="col-12 d-grid p-1">
-             <input type="submit" class="btn btn-primary btn-block" value="L O G I N"  style="background-color: #4b7bec;">
+             <input type="submit" class="btn btn-primary btn-block" value="L O G I N">
           </div>
 			</form>
 	    </div>
