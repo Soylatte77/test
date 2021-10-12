@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-회원관리
+회원목록페이지
 </body>
 </html>

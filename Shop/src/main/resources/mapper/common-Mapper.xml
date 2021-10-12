@@ -5,21 +5,34 @@
 	<resultMap type="com.spring.shop.common.vo.MenuVO" id="menu">
 		<id column="MENU_CODE" property="menuCode"/>
 		<result column="MENU_NAME" property="menuName"/>
-		<result column="MENU_URI" property="menuUri"/>
+		<result column="MENU_PASS" property="menuPass"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.shop.common.vo.SideMenuVO" id="sideMenu">
-		<id column="SIDE_MENU_CODE" property="SideMenuCode"/>
-		<result column="SIDE_MENU_NAME" property="SideMenuName"/>
-		<result column="SIDE_MENU_URI" property="SideMenuUri"/>
+		<id column="SIDE_MENU_CODE" property="sideMenuCode"/>
+		<result column="SIDE_MENU_NAME" property="sideMenuName"/>
+		<result column="SIDE_MENU_PASS" property="sideMenuPass"/>
+		<result column="MENU_CODE" property="menuCode"/>
 	</resultMap>
 	
 	<select id="selectMenuList" resultMap="menu">
 		SELECT MENU_CODE
       		  ,MENU_NAME
-      		  ,MENU_URI
+      		  ,MENU_PASS
 		FROM MENU
+		ORDER BY MENU_CODE
 	</select>
+	
+	<select id="selectSideMenuList" resultMap="sideMenu">
+		SELECT SIDE_MENU_CODE
+      		  ,SIDE_MENU_NAME
+      		  ,MENU_CODE
+      		  ,SIDE_MENU_PASS
+		FROM SIDE_MENU
+		WHERE MENU_CODE = #{menuCode}
+		ORDER BY SIDE_MENU_CODE
+	</select>
+	
 	
 </mapper>
 

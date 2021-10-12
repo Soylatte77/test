@@ -22,7 +22,7 @@
 <div class="row">
 	<div class="col-12">
 		<div class="row justify-content-center">
-		   <div class="col-12">
+		   <div class="col-8">
 		      <form class="row g-3" action="/member/join" method="post" id="joinForm">
 		         <div class="col-9">
 		            <label for="id" class="form-label">ID</label>

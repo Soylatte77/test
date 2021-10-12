@@ -3,7 +3,7 @@ package com.spring.shop.common.vo;
 public class MenuVO {
 	private String menuCode;
 	private String menuName;
-	private String menuUri;
+	private String menuPass;
 	
 	
 	public String getMenuCode() {
@@ -18,11 +18,11 @@ public class MenuVO {
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
-	public String getMenuUri() {
-		return menuUri;
+	public String getmenuPass() {
+		return menuPass;
 	}
-	public void setMenuUri(String menuUri) {
-		this.menuUri = menuUri;
+	public void setmenuPass(String menuPass) {
+		this.menuPass = menuPass;
 	}
 	
 	
