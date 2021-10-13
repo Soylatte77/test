@@ -14,6 +14,14 @@
 		<result column="REG_DATE" property="regDate"/>
 		<result column="CATE_CODE" property="cateCode"/>
 	</resultMap>
+
+	<resultMap type="com.spring.shop.item.vo.ImgVO" id="img">
+		<id column="IMG_CODE"              property="imgCode"/>
+		<result column="ORIGIN_IMG_NAME"   property="originImgName"/>
+		<result column="ATTACHED_IMG_NAME" property="attachedImgName"/>
+		<result column="ITEM_CODE"         property="itemCode"/>
+		<result column="IS_MAIN" 		   property="isMain"/>
+	</resultMap>
 	
 	<!-- 카테고리 리스트  -->
 	<select id="selectCateList" resultMap="category">
@@ -23,7 +31,7 @@
 		ORDER BY CATE_CODE
 	</select>
 	
-	<!-- 아이템 추가 -->
+	<!-- 아이템 등록 -->
 	<insert id="insertItem">
 		INSERT INTO BOOK_ITEM(
 					ITME_CODE
@@ -36,8 +44,33 @@
 				   ,#{itemPrice}
 				   ,#{cateCode}
 		)
-		
 	</insert>		
+	<!-- 이미지 파일 추가 -->
+	<!-- 이미지 갯수만큼 반복해줘야 함 -->
+	<!-- separator: 구분자/ 반복문이 한번 반복할때마다 자동으로 붙여줌 -->
+	<insert id="insertImgs">
+		INSERT INTO BOOK_IMG(
+		            IMG_CODE
+		            ,ORIGIN_IMG_NAME
+		            ,ATTACHED_IMG_NAME
+		            ,ITEM_CODE
+		            ,IS_MAIN
+					) 
+		<foreach collection="imgList" item="imgInfo" separator="UNION ALL">
+			SELECT #{imgInfo.imgCode}
+				 , #{imgInfo.originImgName}
+				 , #{imgInfo.attachedImgName}
+				 , #{imgInfo.itemCode}
+				 , #{imgInfo.isMain} 
+			FROM DUAL
+		</foreach>
+	</insert>
+	
+	<select id="selectNextNumber" resultType="int">
+		SELECT NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5, 3))) + 1, 1) 
+		FROM BOOK_IMG
+	</select>
+	
 	
 	<!-- 카테고리 추가 -->
 	<insert id="insertCate">

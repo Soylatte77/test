@@ -1,12 +1,23 @@
 package com.spring.shop.item.vo;
 
+import java.util.List;
+
 public class ItemVO {
 	private String itemCode;
 	private String itemName;
 	private int itemPrice;
 	private String regDate;
 	private String cateCode;
+	private List<ImgVO> imgList;
 	
+	
+	
+	public List<ImgVO> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<ImgVO> imgList) {
+		this.imgList = imgList;
+	}
 	public String getItemCode() {
 		return itemCode;
 	}

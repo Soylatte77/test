@@ -1,5 +1,13 @@
 package com.spring.shop.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -7,9 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.shop.common.service.CommonService;
+import com.spring.shop.common.util.FileUploadUtil;
 import com.spring.shop.item.service.ItemService;
+import com.spring.shop.item.vo.ImgVO;
 import com.spring.shop.item.vo.ItemVO;
 
 @Controller
@@ -77,8 +89,105 @@ public class AdminController {
 
 	// 상품 등록
 	@PostMapping("/regItem")
-	public String regItem(Model model, ItemVO itemVO) {
+	public String regItem(Model model, ItemVO itemVO, MultipartHttpServletRequest multi) {
+		//실제 첨부파일도 upload
+			//파일 네임이 여러개 들어올 수 있는 장소
+			//파일이 첨부되는 input 태그의 name 속성값을 가져옴
+		Iterator<String> inputNames = multi.getFileNames();
+		
+		//파일이 첨부된 폴더 지정
+		//집
+		String uploadPath = "C:\\git\\ShinMinHwi\\test\\Shop\\src\\main\\webapp\\resources\\images\\";
+		
+		
+		//모든 첨부파일 정보가 들어갈 imgVO를 담을 수 있는 바구니
+		List<ImgVO> imgList = new ArrayList<ImgVO>();
+		
+		//다음에 들어갈 IMG_CODE의 숫자를 조회
+		int nextImgCode = itemService.selectNextNumber();
+		
+		//inputNames 안의 여러 개의 문자열String을 들어있는 만큼 반복 반복
+		while(inputNames.hasNext()) {
+			String inputName = inputNames.next();
+			//하나의 input 태그의 파일 정보
+			multi.getFile(inputName);
+			
+			
+			//위에서 가져온 파일 정보에서 원본 파일명 가져오기
+			//file.getOriginalFilename();
+			//파일의 첨부된 이름
+			//file.getName();
+			
+			//실제 파일 폴더에 저장하기
+				//반드시 트랜잭션 처리해야함
+			try {
+				//다중 첨부
+				//file2 = 사진 여러장 들어옴
+				if(inputName.equals("file2")) {
+					List<MultipartFile> fileList = multi.getFiles(inputName);
+
+					//파일이 여러 장 = for문 돌리기
+					for(MultipartFile file: fileList) {
+						String attchedFileName = FileUploadUtil.getNowDateTime() + "_" +  file.getOriginalFilename();
+						
+						//날짜시간 구하는 메소드 변수로 만들기
+						String uploadFile = uploadPath + attchedFileName;
+						
+						//지정된 경로에 파일 저장하기
+						file.transferTo(new File(uploadFile));	
+						
+						ImgVO img = new ImgVO();
+						img.setImgCode("IMG_00" +  String.format("%03d", nextImgCode++));
+						img.setOriginImgName(file.getOriginalFilename());
+						img.setAttachedImgName(attchedFileName);
+						//img.setItemCode();
+						
+						//다중첨부 = 메인사진이 아님
+						img.setIsMain("N");
+						
+						imgList.add(img);
+						//imgList에 첨부파일의 갯수만큼 imgVO가 차곡차곡 쌓임
+					}
+				}
+				//단일 첨부
+				else {
+					//첨부된 파일 정보가 하나 담겨있음
+					MultipartFile file = multi.getFile(inputName);
+					String attchedFileName = FileUploadUtil.getNowDateTime() + "_" +  file.getOriginalFilename();
+					
+					//날짜시간 구하는 메소드 변수로 만들기
+					String uploadFile = uploadPath + attchedFileName;
+					
+					//지정된 경로에 파일 저장하기
+					file.transferTo(new File(uploadFile));	
+					
+					ImgVO img = new ImgVO();
+					img.setImgCode("IMG_00" +  String.format("%03d", nextImgCode++));
+					img.setOriginImgName(file.getOriginalFilename());
+					img.setAttachedImgName(attchedFileName);
+					//img.setItemCode();
+					
+					//단일 첨부 = 무조건 메인 사진
+					img.setIsMain("Y");
+					
+					imgList.add(img);
+				}
+				
+				
+			} catch (IllegalStateException e) {
+				//부적절한 상태
+				e.printStackTrace();
+			} catch (IOException e) {
+				//input output 오류
+				e.printStackTrace();
+			}
+		}
+		
+		//상품 정보 insert
 		itemService.insertItem(itemVO);
+		
+		//상품 이미지 정보 insert
+		itemService.insertImgs(itemVO);
 
 		return "redirect:/admin/regItem";
 	}

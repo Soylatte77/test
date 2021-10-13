@@ -17,7 +17,7 @@
 </div>
 <div class="row justify-content-center" >
 	<div class="col-12 main">
-	<form class="row g-3"  action="/admin/regItem" method="post">
+	<form class="row g-3"  action="/admin/regItem" method="post" enctype="multipart/form-data">
 		<div class="col-6">
 			<label for="cateName">Category Name</label>
 			<select class="form-select" aria-label="Default select example" id="cateName" name="cateCode">
@@ -38,11 +38,11 @@
 		<div class="col-12">
 			<div class="mb-3">
 			  <label for="formFile" class="form-label">Representative Picture</label>
-			  <input class="form-control" type="file" id="formFile">
+			  <input class="form-control" type="file" name="file1" id="formFile" >
 			</div>
 			<div class="mb-3">
 			  <label for="formFileMultiple" class="form-label">Additional Picture</label>
-			  <input class="form-control" type="file" id="formFileMultiple" multiple>
+			  <input class="form-control" type="file" name="file2" id="formFileMultiple" multiple>
 			</div>
 		</div>
 		<div class="col-12 text-center">
