@@ -28,20 +28,24 @@
 			</select>
 		</div>
 		<div class="col-12">
-			  <label for="itemName" class="form-label">Item Name</label>
+			  <label for="itemName" class="form-label">상품 이름</label>
               <input type="text" name="itemName" class="form-control" id="itemName" placeholder="input here...">
 		</div>
 		<div class="col-12">
-			  <label for="itemPrice" class="form-label">Item Price</label>
+			  <label for="itemPrice" class="form-label">상품 가격</label>
               <input type="text" name="itemPrice" class="form-control" id="itemPrice" placeholder="input here...">
 		</div>
 		<div class="col-12">
+			  <label for="itemContent" class="form-label">상품 설명</label>
+              <input type="text" name="itemContent" class="form-control" id="itemContent" placeholder="input here...">
+		</div>
+		<div class="col-12">
 			<div class="mb-3">
-			  <label for="formFile" class="form-label">Representative Picture</label>
+			  <label for="formFile" class="form-label">메인 사진</label>
 			  <input class="form-control" type="file" name="file1" id="formFile" >
 			</div>
 			<div class="mb-3">
-			  <label for="formFileMultiple" class="form-label">Additional Picture</label>
+			  <label for="formFileMultiple" class="form-label">추가 사진</label>
 			  <input class="form-control" type="file" name="file2" id="formFileMultiple" multiple>
 			</div>
 		</div>

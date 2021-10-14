@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.shop.item.vo.CategoryVO;
+import com.spring.shop.item.vo.ImgVO;
 import com.spring.shop.item.vo.ItemVO;
 
 @Service("itemService")
@@ -49,6 +50,18 @@ public class ItemServiceImpl implements ItemService {
 	public int selectNextNumber() {
 		return sqlSession.selectOne("itemMapper.selectNextNumber");
 		
+	}
+
+	@Override
+	public String selectNextItemCode() {
+
+		return sqlSession.selectOne("itemMapper.selectNextItemCode");
+	}
+
+	@Override
+	public List<ItemVO> selectItemList() {
+		
+		return sqlSession.selectList("itemMapper.selectItemList");
 	}
 
 	

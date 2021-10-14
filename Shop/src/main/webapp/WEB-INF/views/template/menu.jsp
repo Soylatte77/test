@@ -58,6 +58,7 @@
 										<c:forEach items="${cateList }" var="cateInfo">
 										<a class="nav-link active" href="#">${cateInfo.cateName }</a> 
 										</c:forEach>
+										<a class="nav-link active" href="/common/bookBoard">게시판</a> 
 									</c:when>
 									<c:otherwise>
 										<c:forEach items="${menuList }" var="menuInfo">

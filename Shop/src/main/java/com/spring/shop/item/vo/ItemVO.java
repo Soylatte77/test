@@ -6,6 +6,7 @@ public class ItemVO {
 	private String itemCode;
 	private String itemName;
 	private int itemPrice;
+	private String itemContent;
 	private String regDate;
 	private String cateCode;
 	private List<ImgVO> imgList;
@@ -35,6 +36,12 @@ public class ItemVO {
 	}
 	public void setItemPrice(int itemPrice) {
 		this.itemPrice = itemPrice;
+	}
+	public String getItemContent() {
+		return itemContent;
+	}
+	public void setItemContent(String itemContent) {
+		this.itemContent = itemContent;
 	}
 	public String getRegDate() {
 		return regDate;

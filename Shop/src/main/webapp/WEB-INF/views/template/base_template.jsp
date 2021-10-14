@@ -36,7 +36,7 @@ body {
 		<tiles:insertAttribute name="menu"/>
 	</div>
 	<div class="row">
-		<div class="col-10"> <!--class="col" 하나의 열  -->
+		<div class="col-12"> <!--class="col" 하나의 열  -->
 		<tiles:insertAttribute name="body"/>
 		</div>
 	</div>

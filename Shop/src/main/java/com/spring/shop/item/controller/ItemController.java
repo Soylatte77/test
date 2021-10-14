@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.shop.common.service.CommonService;
 import com.spring.shop.item.service.ItemService;
+import com.spring.shop.item.vo.ImgVO;
+import com.spring.shop.item.vo.ItemVO;
 
 @Controller
 @RequestMapping("/item")
@@ -23,7 +25,7 @@ public class ItemController {
 	@GetMapping("/itemList")
 	public String selectItemList(Model model) {
 		model.addAttribute("cateList", itemService.selectCateList());
-		
+		model.addAttribute("itemList", itemService.selectItemList());
 		
 		return "item/item_list";
 	}

@@ -11,10 +11,12 @@
 		<id column="ITEM_CODE" property="itemCode"/>
 		<result column="ITEM_NAME" property="itemName"/>
 		<result column="ITEM_PRICE" property="itemPrice"/>
+		<result column="ITEM_CONTENT" property="itemContent"/>
 		<result column="REG_DATE" property="regDate"/>
 		<result column="CATE_CODE" property="cateCode"/>
+		<collection property="imgList" resultMap="img"></collection>
 	</resultMap>
-
+	<!-- collection list 와 같은 일대다 형식의 데이터 자료를 담을 수 있음 -->
 	<resultMap type="com.spring.shop.item.vo.ImgVO" id="img">
 		<id column="IMG_CODE"              property="imgCode"/>
 		<result column="ORIGIN_IMG_NAME"   property="originImgName"/>
@@ -34,17 +36,26 @@
 	<!-- 아이템 등록 -->
 	<insert id="insertItem">
 		INSERT INTO BOOK_ITEM(
-					ITME_CODE
+					ITEM_CODE
 				   ,ITEM_NAME
 				   ,ITEM_PRICE
+				   ,ITEM_CONTENT
 				   ,CATE_CODE
 		)VALUES(
-				   (SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, '0') FROM BOOK_ITEM)
+				   #{itemCode}
 				   ,#{itemName}
 				   ,#{itemPrice}
+				   ,#{itemContent}
 				   ,#{cateCode}
 		)
 	</insert>		
+	
+	<!-- 다음 차례에 들어갈 아이템 코드를 구하는 쿼리 -->
+	<select id="selectNextItemCode" resultType="String">
+		 SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, '0') 
+		 FROM BOOK_ITEM
+	</select>
+	
 	<!-- 이미지 파일 추가 -->
 	<!-- 이미지 갯수만큼 반복해줘야 함 -->
 	<!-- separator: 구분자/ 반복문이 한번 반복할때마다 자동으로 붙여줌 -->
@@ -95,6 +106,19 @@
 		DELETE BOOK_ITEM
 		WHERE CATE_CODE = #{cateCode}
 	</delete>
+	
+	<!-- 아이템 리스트 -->
+	<select id="selectItemList" resultMap="item">
+		SELECT IT.ITEM_CODE
+		     , ITEM_NAME
+		     , ITEM_PRICE
+		     , IT.ITEM_CONTENT
+		     , ATTACHED_IMG_NAME
+		FROM BOOK_ITEM IT, BOOK_IMG IM
+		WHERE IT.ITEM_CODE = IM.ITEM_CODE
+		AND IS_MAIN = 'Y'
+		ORDER BY REG_DATE DESC
+	</select>
 </mapper>
 
 

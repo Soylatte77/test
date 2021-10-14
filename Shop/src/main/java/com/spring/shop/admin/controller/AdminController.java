@@ -97,7 +97,9 @@ public class AdminController {
 		
 		//파일이 첨부된 폴더 지정
 		//집
-		String uploadPath = "C:\\git\\ShinMinHwi\\test\\Shop\\src\\main\\webapp\\resources\\images\\";
+		//tring uploadPath = "C:\\git\\ShinMinHwi\\test\\Shop\\src\\main\\webapp\\resources\\images\\";
+		//학원
+		String uploadPath = "D:\\git\\ShinMinHwi\\test\\Shop\\src\\main\\webapp\\resources\\images\\";
 		
 		
 		//모든 첨부파일 정보가 들어갈 imgVO를 담을 수 있는 바구니
@@ -105,6 +107,8 @@ public class AdminController {
 		
 		//다음에 들어갈 IMG_CODE의 숫자를 조회
 		int nextImgCode = itemService.selectNextNumber();
+		//다음에 들어갈 itemCode값을 조회
+		String itemCode = itemService.selectNextItemCode();	
 		
 		//inputNames 안의 여러 개의 문자열String을 들어있는 만큼 반복 반복
 		while(inputNames.hasNext()) {
@@ -124,9 +128,10 @@ public class AdminController {
 				//다중 첨부
 				//file2 = 사진 여러장 들어옴
 				if(inputName.equals("file2")) {
+					//여러 장의 파일을 넣을 수 있는 List
 					List<MultipartFile> fileList = multi.getFiles(inputName);
 
-					//파일이 여러 장 = for문 돌리기
+					//파일이 여러 장 = 파일의 갯수만큼 for문 돌리기
 					for(MultipartFile file: fileList) {
 						String attchedFileName = FileUploadUtil.getNowDateTime() + "_" +  file.getOriginalFilename();
 						
@@ -136,17 +141,18 @@ public class AdminController {
 						//지정된 경로에 파일 저장하기
 						file.transferTo(new File(uploadFile));	
 						
+						//DB에 insert 하기 위한 이미지의 정보 넣어주기
 						ImgVO img = new ImgVO();
-						img.setImgCode("IMG_00" +  String.format("%03d", nextImgCode++));
+						img.setImgCode("IMG_" +  String.format("%03d", nextImgCode++));
 						img.setOriginImgName(file.getOriginalFilename());
 						img.setAttachedImgName(attchedFileName);
-						//img.setItemCode();
+						img.setItemCode(itemCode);
 						
 						//다중첨부 = 메인사진이 아님
 						img.setIsMain("N");
 						
-						imgList.add(img);
 						//imgList에 첨부파일의 갯수만큼 imgVO가 차곡차곡 쌓임
+						imgList.add(img);
 					}
 				}
 				//단일 첨부
@@ -162,10 +168,10 @@ public class AdminController {
 					file.transferTo(new File(uploadFile));	
 					
 					ImgVO img = new ImgVO();
-					img.setImgCode("IMG_00" +  String.format("%03d", nextImgCode++));
+					img.setImgCode("IMG_" +  String.format("%03d", nextImgCode++));
 					img.setOriginImgName(file.getOriginalFilename());
 					img.setAttachedImgName(attchedFileName);
-					//img.setItemCode();
+					img.setItemCode(itemCode);
 					
 					//단일 첨부 = 무조건 메인 사진
 					img.setIsMain("Y");
@@ -184,9 +190,13 @@ public class AdminController {
 		}
 		
 		//상품 정보 insert
+			//itemCode 쿼리값을 별도로 itemVO에 넣어줘야 함
+		itemVO.setItemCode(itemCode);
 		itemService.insertItem(itemVO);
 		
 		//상품 이미지 정보 insert
+			//imgList = 이미지 정보가 하나 혹은 여러개 들어있음
+		itemVO.setImgList(imgList);
 		itemService.insertImgs(itemVO);
 
 		return "redirect:/admin/regItem";

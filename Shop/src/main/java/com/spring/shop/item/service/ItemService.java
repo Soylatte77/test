@@ -29,4 +29,9 @@ public interface ItemService {
 	//다음 img_code의 숫자를 조회
 	int selectNextNumber();
 	
+	//다음 차례에 올 itemCode를 조회
+	String selectNextItemCode();
+
+	//메인 이미지 리스트 조회
+	List<ItemVO> selectItemList();
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.shop.common.vo.BoardVO;
 import com.spring.shop.common.vo.MenuVO;
 import com.spring.shop.common.vo.SideMenuVO;
 
@@ -25,6 +26,12 @@ public class CommonServiceImpl implements CommonService {
 	public List<SideMenuVO> selectSideMenuList(String menuCode) {
 		
 		return sqlSession.selectList("commonMapper.selectSideMenuList", menuCode);
+	}
+
+	@Override
+	public List<BoardVO> selectBoardList() {
+
+		return sqlSession.selectList("commonMapper.selectBoardList");
 	}
 
 }
