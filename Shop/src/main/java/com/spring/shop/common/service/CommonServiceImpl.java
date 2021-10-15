@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.shop.common.vo.BoardVO;
 import com.spring.shop.common.vo.MenuVO;
+import com.spring.shop.common.vo.PageVO;
 import com.spring.shop.common.vo.SideMenuVO;
 
 @Service("commonService")
@@ -29,9 +30,14 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public List<BoardVO> selectBoardList() {
+	public List<BoardVO> selectBoardList(BoardVO boardVO) {
 
-		return sqlSession.selectList("commonMapper.selectBoardList");
+		return sqlSession.selectList("commonMapper.selectBoardList", boardVO);
 	}
+
+	@Override
+	public int selectBoardCnt() {
+		return sqlSession.selectOne("commonMapper.selectBoardCnt");
+	};
 
 }

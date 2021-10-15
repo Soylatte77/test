@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.shop.common.vo.BoardVO;
 import com.spring.shop.common.vo.MenuVO;
+import com.spring.shop.common.vo.PageVO;
 import com.spring.shop.common.vo.SideMenuVO;
 
 public interface CommonService {
@@ -15,6 +16,9 @@ public interface CommonService {
 	List<SideMenuVO> selectSideMenuList(String menuCode);
 	
 	//게시판 목록 조회
-	List<BoardVO> selectBoardList();
+	List<BoardVO> selectBoardList(BoardVO boardVO);
+	//boardVO에는 pageVO + boardSearchVo 둘다 상속
 	
+	//전체 게시글 갯수 조회
+	int selectBoardCnt();
 }

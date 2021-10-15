@@ -1,7 +1,9 @@
 package com.spring.shop.common.vo;
 
-public class PageVO {
+public class PageVO extends BaseSearchVO{
 	//페이징 처리 클래스
+	
+	//검색 조건vo를 상속
 	
 	//현재 선택된 페이지 번호
 	private int nowPage;
@@ -30,14 +32,16 @@ public class PageVO {
 	//[다음] 버튼의 유무
 	private boolean next;
 	
+	//시작하는 rowNum
 	private int startNum;
+	//끝나는 rowNum
 	private int endNum;
 	
 	public PageVO() {
 		nowPage = 1;
 	
-		//한 화면에 데이터 10개씩
-		displayCnt = 10;
+		//한 화면에 데이터 5개씩
+		displayCnt = 5;
 		
 		//한 번에 보여지는 페이지의 수
 		//1 2 3 4 5
@@ -61,7 +65,7 @@ public class PageVO {
 		this.totalCnt = totalCnt;
 	}
 
-	public boolean isPrev() {
+	public boolean getPrev() {
 		return prev;
 	}
 
@@ -69,7 +73,7 @@ public class PageVO {
 		this.prev = prev;
 	}
 
-	public boolean isNext() {
+	public boolean getNext() {
 		return next;
 	}
 
@@ -86,12 +90,28 @@ public class PageVO {
 	}
 	
 	 
+	public int getStartNum() {
+		return startNum;
+	}
+
+	public void setStartNum() {
+		this.startNum = (nowPage - 1) * displayCnt + 1;
+					   //현재 페이지    한 화면에 보여줄 게시글
+	}
+
+	public int getEndNum() {
+		return endNum;
+	}
+
+	public void setEndNum() {
+		this.endNum = nowPage * displayCnt;
+	}
+
 	//이 메소드 호출 시 페이징 처리의 모든 정보가 세팅됨
 	public void setPageInfo() {
 		//화면에 보이는 마지막 페이지 번호를 설정
 		//ceil 올림 함수
-		endPage = (int)(Math.ceil(nowPage) / (double)displayPageCnt) * displayPageCnt;
-		
+		endPage = (int)(Math.ceil(nowPage / (double)displayPageCnt)) * displayPageCnt;
 		//화면에 보이는 첫페이지 번호를 세팅
 		beginPage = endPage - displayPageCnt + 1;
 	
@@ -114,6 +134,10 @@ public class PageVO {
 		
 		//prev 이전 버튼의 유무
 		prev = beginPage ==  1 ? false : true;
+		
+		//이 메소드 호출될 때 자동으로 스타트,엔드 넘에 넣어줌
+		setStartNum();
+		setEndNum();
 	}
 	
 	

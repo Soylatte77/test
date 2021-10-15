@@ -60,12 +60,24 @@
 			      ,WRITER
 			      ,TO_CHAR(CREATE_DATE, 'YYYY/MM/DD') AS CREATE_DATE
 			FROM BOOK_BOARD
+			<!-- 검색창 input 값이 널이 아니고 빈값도 아닐 때 실행 -->
+			<if test="searchValue != null and !searchValue.equals('')">
+			WHERE ${searchKeyword} LIKE '$'||#{searchValue}||'$'
+			</if>
 			ORDER BY BOARD_NUM DESC
 			)
 		)
-		WHERE ROW_NUM >= 11 AND ROW_NUM &lt;= 20
-
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
+	<!-- # = 홀따옴표가 붙어서 나옴 -->
+	
+	<!-- 페이징 처리를 위한 게시글 전체 데이터 갯수 조회 -->
+	<select id="selectBoardCnt" resultType="int">
+		SELECT COUNT(BOARD_NUM)
+		FROM BOOK_BOARD
+	</select>
+
+
 </mapper>
 
 
