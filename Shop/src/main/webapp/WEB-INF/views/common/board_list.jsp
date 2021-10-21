@@ -30,7 +30,7 @@ tr, th, td{
 			</select>
 		</div>
 		<div class="col-4">
-			 <input type="text" class="form-control" name="searchValue" placeholder="">
+			 <input type="text" class="form-control" name="searchValue" placeholder="" value="${boardVO.searchValue}">
 		</div>
 		<div class="col-3 d-grid">
 			<input type="submit" class="btn btn-primary" value="검색">
@@ -94,7 +94,8 @@ tr, th, td{
 		    </li>
 		    
 		    <c:forEach begin="${boardVO.beginPage }" end="${boardVO.endPage }" var="pageNumber">
-			    <li class="page-item <c:if test="${boardVO.nowPage eq pageNumber }">active </c:if>"><a class="page-link" href="/common/bookBoard?nowPage=${pageNumber}">${pageNumber }</a></li>
+			    <li class="page-item <c:if test="${boardVO.nowPage eq pageNumber }">active </c:if>">
+			    <a class="page-link" href="/common/bookBoard?nowPage=${pageNumber}&searchKeyword=${boardVO.searchKeyword}&searchValue=${boardVO.searchValue}">${pageNumber }</a></li>
 			</c:forEach>
 		    
 		    <li class="page-item <c:if test="${!boardVO.next }">disabled</c:if>">

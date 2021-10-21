@@ -20,5 +20,5 @@ public interface CommonService {
 	//boardVO에는 pageVO + boardSearchVo 둘다 상속
 	
 	//전체 게시글 갯수 조회
-	int selectBoardCnt();
+	int selectBoardCnt(BoardVO boardVO);
 }

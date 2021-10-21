@@ -62,7 +62,7 @@
 			FROM BOOK_BOARD
 			<!-- 검색창 input 값이 널이 아니고 빈값도 아닐 때 실행 -->
 			<if test="searchValue != null and !searchValue.equals('')">
-			WHERE ${searchKeyword} LIKE '$'||#{searchValue}||'$'
+			WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 			</if>
 			ORDER BY BOARD_NUM DESC
 			)
@@ -75,6 +75,9 @@
 	<select id="selectBoardCnt" resultType="int">
 		SELECT COUNT(BOARD_NUM)
 		FROM BOOK_BOARD
+		<if test="searchValue != null and !searchValue.equals('')">
+		WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+		</if>
 	</select>
 
 

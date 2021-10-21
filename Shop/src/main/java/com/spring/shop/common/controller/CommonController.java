@@ -29,10 +29,11 @@ public class CommonController {
 		
 		//페이징 처리를 위해서는 먼저 전체 데이터 수를 구해야 함
 		//쿼리문을 통해서 구해야 함
-		int dataCnt = commonService.selectBoardCnt();
+		int dataCnt = commonService.selectBoardCnt(boardVO);
 		boardVO.setTotalCnt(dataCnt);
 		
 		//페이징 처리
+		//페이징 처리에 관한 메소드
 		boardVO.setPageInfo();
 		
 		

@@ -36,8 +36,8 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public int selectBoardCnt() {
-		return sqlSession.selectOne("commonMapper.selectBoardCnt");
+	public int selectBoardCnt(BoardVO boardVO) {
+		return sqlSession.selectOne("commonMapper.selectBoardCnt", boardVO);
 	};
 
 }
